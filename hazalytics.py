@@ -52,6 +52,50 @@ def calculate_kelly(decimal_odds, probability):
     net_odds = calculate_net_odds(decimal_odds)
     probability_of_losing_decimal = 1 - probability_decimal
     return ((net_odds * probability_decimal) - probability_of_losing_decimal) / net_odds
+
+def get_kelly_recommendation(kelly):
+    if kelly <= 0:
+        return "No bet"
+    elif kelly > 0.20:
+        return "Half Kelly recommended"
+    elif kelly > 0.10:
+        return "Half or Quarter Kelly recommended"
+    else:
+        return "Full Kelly is reasonable"
+    
+def get_risk_rating(kelly):
+    if kelly <= 0:
+        return "No Bet ⚪"
+    elif kelly < 0.05:
+        return "Very Low 🟢"
+    elif kelly < 0.10:
+        return "Low 🟢"
+    elif kelly < 0.20:
+        return "Moderate 🟡"
+    elif kelly <0.35:
+        return "High 🟠"
+    else:
+        return "Very High 🔴"
+
+def calculate_confidence_score(expected_value, kelly):
+    score = 50
+
+    if expected_value > 0:
+        score += expected_value * 100
+    else:
+        score += expected_value * 200
+
+    if kelly > 0.35:
+        score -= 15
+    elif kelly > 0.20:
+        score -= 5
+
+    if score > 100:
+        score = 100
+    elif score < 0:
+        score = 0
+
+    return score                        
     
 def get_valid_decimal_odds():
     while True:
@@ -135,7 +179,6 @@ def ev_calculator():
      answer = "y"
 
      while answer == "y":
-        print("❌ Stake must be greater than £0.")
         print_header("EV Calculator")
 
         decimal_odds = get_valid_decimal_odds()   
@@ -179,15 +222,88 @@ def kelly_calculator():
         kelly = calculate_kelly(decimal_odds, probability)
         half_kelly = kelly / 2
         quarter_kelly = kelly / 4
-
+        recommendation = get_kelly_recommendation(kelly)
+        expected_value = calculate_ev(decimal_odds, probability)
+        confidence_score = calculate_confidence_score(expected_value, kelly)
+        risk = get_risk_rating(kelly)
+        
         print_results()
         print(f"Decimal odds: {decimal_odds:.2f}")
         print(f"Probability: {probability:.2f}%")
         print(f"Full Kelly: {kelly * 100:.2f}% of bankroll")
         print(f"Half Kelly: {half_kelly * 100:.2f}% of bankroll")
         print(f"Quarter Kelly: {quarter_kelly * 100:.2f}% of bankroll")
+        print(f"Recommendation: {recommendation}")
+        print(f"Risk Rating: {risk}")
+        print(f"Confidence Score: {confidence_score:.0f}/100")
 
-        answer = input("Run another calculation? (y/n): ")                
+        answer = input("Run another calculation? (y/n): ")
+
+def bet_analyser():
+    answer = "y"
+
+    while answer == "y":
+        print_header("Bet Analyser")
+
+        decimal_odds = get_valid_decimal_odds()
+        probability = get_valid_probability()
+
+        implied_probability = calculate_probability(decimal_odds)
+        fair_odds = probability_to_decimal_odds(probability)
+        expected_value = calculate_ev(decimal_odds, probability)
+        kelly = calculate_kelly(decimal_odds, probability)
+        half_kelly = kelly / 2
+        quarter_kelly = kelly / 4
+        recommendation = get_kelly_recommendation(kelly)
+        risk = get_risk_rating(kelly)
+        confidence_score = calculate_confidence_score(expected_value, kelly)
+        print()
+        print("=" * 35)
+        print(f"{'BET ANALYSIS':^35}")
+        print("=" * 35)      
+        print("📈 Market")
+        print("-" * 35)      
+        print(f"Bookmaker Odds:      {decimal_odds:.2f}")
+        print(f"Implied Probability: {implied_probability * 100:.2f}%")
+        print()
+        print("🧠 Your Model")
+        print("-" * 35)
+        print(f"Model Probability:   {probability:.2f}%")
+        print(f"Fair Odds:           {fair_odds:.2f}")
+        if expected_value >= 0:
+            print(f"Expected Value:      +{expected_value * 100:.2f}%")
+        else:    
+            print(f"Expected Value:      {expected_value * 100:.2f}%")
+        print()    
+        print("💰 Staking")
+        print("-" * 35)
+        print(f"Full Kelly:          {kelly * 100:.2f}% of bankroll")
+        print(f"Half Kelly:          {half_kelly * 100:.2f}% of bankroll")
+        print(f"Quarter Kelly:       {quarter_kelly * 100:.2f}% of bankroll")
+        print()
+        print("🎯 Assessment")
+        print("-" * 35)
+        print(f"Recommendation:      {recommendation}")
+        print(f"Risk:                {risk}")
+        if confidence_score >= 80:
+            print(f"Confidence:         ⭐⭐⭐⭐⭐ {confidence_score:.0f}/100")
+        elif confidence_score >= 65:
+            print(f"Confidence:         ⭐⭐⭐⭐ {confidence_score:.0f}/100")
+        elif confidence_score >= 50:
+            print(f"Confidence:         ⭐⭐⭐ {confidence_score:.0f}/100")
+        elif confidence_score >= 35:
+            print(f"Confidence:         ⭐⭐ {confidence_score:.0f}/100")
+        else:
+            print(f"Confidence:         ⭐ {confidence_score:.0f}/100")            
+        print()
+        print("Verdict")
+        print("-" * 35)
+        if expected_value > 0:
+            print("Verdict: ✅ Value Bet")
+        else:
+            print("Verdict: ❌ No Value")
+        print()    
+        answer = input("Run another calculation? (y/n): ")                                
 
 def print_startup():
     print("=" * 35)
@@ -203,32 +319,36 @@ def main_menu():
     while running == "y":
         print_header("Main Menu")
 
-        print("1. Odds Converter")
-        print("2. Probability Calculator")
-        print("3. EV Calculator")
-        print("4. Fair Odds Calculator")
-        print("5. Kelly Calculator")
-        print("6. Exit")
+        print("1. Bet Analyser")
+        print("2. Odds Converter")
+        print("3. Probability Calculator")
+        print("4. EV Calculator")
+        print("5. Fair Odds Calculator")
+        print("6. Kelly Calculator")
+        print("7. Exit")
 
         choice = input("Choose an option: ")
 
         if choice == "1":
-            odds_converter()
+            bet_analyser()
 
         elif choice == "2":
-            probability_calculator()
+            odds_converter()
 
         elif choice == "3":
-            ev_calculator()
+            probability_calculator()
 
         elif choice == "4":
-            fair_odds_calculator()
+            ev_calculator()
 
         elif choice == "5":
-            kelly_calculator()                 
+            fair_odds_calculator()                 
 
         elif choice == "6":
-            running = "n"
+            kelly_calculator()
+
+        elif choice == "7":
+            running = "n"    
 
         else:
             print("Invalid option. Please choose a valid number.")     
