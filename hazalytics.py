@@ -177,11 +177,15 @@ def kelly_calculator():
         decimal_odds = get_valid_decimal_odds()
         probability = get_valid_probability()
         kelly = calculate_kelly(decimal_odds, probability)
+        half_kelly = kelly / 2
+        quarter_kelly = kelly / 4
 
         print_results()
         print(f"Decimal odds: {decimal_odds:.2f}")
         print(f"Probability: {probability:.2f}%")
-        print(f"Kelly stake: {kelly * 100:.2f}% of bankroll")
+        print(f"Full Kelly: {kelly * 100:.2f}% of bankroll")
+        print(f"Half Kelly: {half_kelly * 100:.2f}% of bankroll")
+        print(f"Quarter Kelly: {quarter_kelly * 100:.2f}% of bankroll")
 
         answer = input("Run another calculation? (y/n): ")                
 
