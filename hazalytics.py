@@ -35,6 +35,9 @@ def probability_to_decimal_odds(probability):
 def calculate_ev(decimal_odds, probability):
     return (probability_to_decimal(probability) * decimal_odds) - 1
 
+def calculate_edge(probability, implied_probability):
+    return probability - (implied_probability * 100)
+
 def get_ev_rating(expected_value):
     if expected_value > 0.20:
         return "⭐⭐⭐⭐⭐ Excellent value"
@@ -65,17 +68,17 @@ def get_kelly_recommendation(kelly):
     
 def get_risk_rating(kelly):
     if kelly <= 0:
-        return "No Bet ⚪"
+        return "⚪ No Bet"
     elif kelly < 0.05:
-        return "Very Low 🟢"
+        return "🟢 Very Low"
     elif kelly < 0.10:
-        return "Low 🟢"
+        return "🟢 Low"
     elif kelly < 0.20:
-        return "Moderate 🟡"
+        return "🟡 Moderate"
     elif kelly <0.35:
-        return "High 🟠"
+        return "🟠 High"
     else:
-        return "Very High 🔴"
+        return "🔴 Very High"
 
 def calculate_confidence_score(expected_value, kelly):
     score = 50
@@ -95,7 +98,39 @@ def calculate_confidence_score(expected_value, kelly):
     elif score < 0:
         score = 0
 
-    return score                        
+    return score
+
+def get_value_grade(expected_value, edge):
+
+    ev = expected_value * 100
+
+    if ev >= 20 and edge >= 10:
+        return "A+ ⭐ Elite Value"
+
+    elif ev >= 15 and edge >= 8:
+        return "A ⭐ Strong Value"
+
+    elif ev >= 10 and edge >= 5:
+        return "B 👍 Good Value"
+
+    elif ev >= 5 and edge >= 2:
+        return "C ✔️ Small Edge"
+
+    elif ev >= 0:
+        return "D ⚪ Marginal"
+
+    else:
+        return "F ❌ No Value"
+
+def get_recommended_stake(recommendation, full_stake, half_stake, quarter_stake):
+    if recommendation == "Half Kelly recommended":
+        return "(Half Kelly)", half_stake
+    elif recommendation == "Half or Quarter Kelly recommended":
+        return "(Quarter Kelly)", quarter_stake
+    elif recommendation == "Full Kelly is reasonable":
+        return "(Full Kelly)", full_stake
+    else:
+        return "(No Bet)", 0                            
     
 def get_valid_decimal_odds():
     while True:
@@ -134,7 +169,20 @@ def get_valid_stake():
                 return stake
 
         except ValueError:
-            print("❌ Please enter a valid number.")    
+            print("❌ Please enter a valid number.")
+
+def get_valid_bankroll():
+    while True:
+        try:
+            bankroll = float(input("Enter bankroll: £"))
+
+            if bankroll <= 0:
+                print("❌ Bankroll must be greater than £0.")
+            else:
+                return bankroll
+
+        except ValueError:
+            print("❌ Please enter a valid number.")                        
 
 def odds_converter():
     answer = "y"
@@ -247,20 +295,27 @@ def bet_analyser():
 
         decimal_odds = get_valid_decimal_odds()
         probability = get_valid_probability()
-
+        bankroll = get_valid_bankroll()
         implied_probability = calculate_probability(decimal_odds)
-        fair_odds = probability_to_decimal_odds(probability)
+        edge = calculate_edge(probability, implied_probability)
         expected_value = calculate_ev(decimal_odds, probability)
+        value_grade = get_value_grade(expected_value, edge)
+        fair_odds = probability_to_decimal_odds(probability)
         kelly = calculate_kelly(decimal_odds, probability)
         half_kelly = kelly / 2
         quarter_kelly = kelly / 4
+        full_kelly_stake = bankroll * kelly
+        half_kelly_stake = bankroll * half_kelly
+        quarter_kelly_stake = bankroll * quarter_kelly
         recommendation = get_kelly_recommendation(kelly)
+        recommended_method, recommended_stake = get_recommended_stake(recommendation, full_kelly_stake, half_kelly_stake, quarter_kelly_stake)
         risk = get_risk_rating(kelly)
         confidence_score = calculate_confidence_score(expected_value, kelly)
         print()
         print("=" * 35)
         print(f"{'BET ANALYSIS':^35}")
-        print("=" * 35)      
+        print("=" * 35)
+        print()      
         print("📈 Market")
         print("-" * 35)      
         print(f"Bookmaker Odds:      {decimal_odds:.2f}")
@@ -269,6 +324,10 @@ def bet_analyser():
         print("🧠 Your Model")
         print("-" * 35)
         print(f"Model Probability:   {probability:.2f}%")
+        if edge >= 0:
+            print(f"Edge:                +{edge:.2f}%")
+        else:
+            print(f"Edge:                {edge:.2f}%")    
         print(f"Fair Odds:           {fair_odds:.2f}")
         if expected_value >= 0:
             print(f"Expected Value:      +{expected_value * 100:.2f}%")
@@ -277,24 +336,26 @@ def bet_analyser():
         print()    
         print("💰 Staking")
         print("-" * 35)
-        print(f"Full Kelly:          {kelly * 100:.2f}% of bankroll")
-        print(f"Half Kelly:          {half_kelly * 100:.2f}% of bankroll")
-        print(f"Quarter Kelly:       {quarter_kelly * 100:.2f}% of bankroll")
+        print(f"Bankroll:            £{bankroll:.2f}")
+        print(f"Full Kelly:          {kelly * 100:.2f}%  |  £{full_kelly_stake:.2f}")
+        print(f"Half Kelly:          {half_kelly * 100:.2f}%  |  £{half_kelly_stake:.2f}")
+        print(f"Quarter Kelly:       {quarter_kelly * 100:.2f}%  |  £{quarter_kelly_stake:.2f}")
         print()
         print("🎯 Assessment")
         print("-" * 35)
-        print(f"Recommendation:      {recommendation}")
         print(f"Risk:                {risk}")
         if confidence_score >= 80:
-            print(f"Confidence:         ⭐⭐⭐⭐⭐ {confidence_score:.0f}/100")
+            print(f"Confidence:          ⭐⭐⭐⭐⭐ {confidence_score:.0f}/100")
         elif confidence_score >= 65:
-            print(f"Confidence:         ⭐⭐⭐⭐ {confidence_score:.0f}/100")
+            print(f"Confidence:          ⭐⭐⭐⭐ {confidence_score:.0f}/100")
         elif confidence_score >= 50:
-            print(f"Confidence:         ⭐⭐⭐ {confidence_score:.0f}/100")
+            print(f"Confidence:          ⭐⭐⭐ {confidence_score:.0f}/100")
         elif confidence_score >= 35:
-            print(f"Confidence:         ⭐⭐ {confidence_score:.0f}/100")
+            print(f"Confidence:          ⭐⭐ {confidence_score:.0f}/100")
         else:
-            print(f"Confidence:         ⭐ {confidence_score:.0f}/100")            
+            print(f"Confidence:          ⭐ {confidence_score:.0f}/100")
+        print(f"Value Grade:         {value_grade}")
+        print(f"Recommended Action:  Bet £{recommended_stake:.2f} {(recommended_method)}")                
         print()
         print("Verdict")
         print("-" * 35)
