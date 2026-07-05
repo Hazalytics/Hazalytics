@@ -1,13 +1,13 @@
 sport,competition,event_name,event_date,neutral_venue,market,selection,odds,status,selection_result,team_1_goals,team_2_goals
-football,world cup,Brazil v Norway,05/07/2026,yes,Full Time Result,Brazil,1.75,Pending,,,
-football,world cup,Brazil v Norway,05/07/2026,yes,Full Time Result,Norway,4.75,Pending,,,
-football,world cup,Brazil v Norway,05/07/2026,yes,Full Time Result,Draw,3.7,Pending,,,
-football,world cup,Brazil v Norway,05/07/2026,yes,To Qualify,Brazil,1.36,Pending,,,
-football,world cup,Brazil v Norway,05/07/2026,yes,To Qualify,Norway,3.2,Pending,,,
-football,world cup,Brazil v Norway,05/07/2026,yes,Double Chance,Brazil or Draw,1.18,Pending,,,
-football,world cup,Brazil v Norway,05/07/2026,yes,Double Chance,Draw or Norway,2.0,Pending,,,
-football,world cup,Brazil v Norway,05/07/2026,yes,Double Chance,Brazil or Norway,1.28,Pending,,,
-football,world cup,Brazil v Norway,05/07/2026,yes,Goals Over/Under,Over 2.5,1.66,Pending,,,
-football,world cup,Brazil v Norway,05/07/2026,yes,Goals Over/Under,Under 2.5,2.2,Pending,,,
-football,world cup,Brazil v Norway,05/07/2026,yes,BTTS,Yes,1.61,Pending,,,
-football,world cup,Brazil v Norway,05/07/2026,yes,BTTS,No,2.2,Pending,,,
+football,world cup,Brazil v Norway,05/07/2026,yes,Full Time Result,Brazil,1.75,Complete,Lose,1,2
+football,world cup,Brazil v Norway,05/07/2026,yes,Full Time Result,Norway,4.75,Complete,Win,1,2
+football,world cup,Brazil v Norway,05/07/2026,yes,Full Time Result,Draw,3.7,Complete,Lose,1,2
+football,world cup,Brazil v Norway,05/07/2026,yes,To Qualify,Brazil,1.36,Complete,Lose,1,2
+football,world cup,Brazil v Norway,05/07/2026,yes,To Qualify,Norway,3.2,Complete,Win,1,2
+football,world cup,Brazil v Norway,05/07/2026,yes,Double Chance,Brazil or Draw,1.18,Complete,Lose,1,2
+football,world cup,Brazil v Norway,05/07/2026,yes,Double Chance,Draw or Norway,2.0,Complete,Win,1,2
+football,world cup,Brazil v Norway,05/07/2026,yes,Double Chance,Brazil or Norway,1.28,Complete,Win,1,2
+football,world cup,Brazil v Norway,05/07/2026,yes,Goals Over/Under,Over 2.5,1.66,Complete,Win,1,2
+football,world cup,Brazil v Norway,05/07/2026,yes,Goals Over/Under,Under 2.5,2.2,Complete,Lose,1,2
+football,world cup,Brazil v Norway,05/07/2026,yes,BTTS,Yes,1.61,Complete,Win,1,2
+football,world cup,Brazil v Norway,05/07/2026,yes,BTTS,No,2.2,Complete,Lose,1,2
