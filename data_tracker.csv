@@ -11,3 +11,51 @@ football,world cup,Brazil v Norway,05/07/2026,yes,Goals Over/Under,Over 2.5,1.66
 football,world cup,Brazil v Norway,05/07/2026,yes,Goals Over/Under,Under 2.5,2.2,Complete,Lose,1,2
 football,world cup,Brazil v Norway,05/07/2026,yes,BTTS,Yes,1.61,Complete,Win,1,2
 football,world cup,Brazil v Norway,05/07/2026,yes,BTTS,No,2.2,Complete,Lose,1,2
+football,world cup,Mexico v England,06/07/2026,no,Full Time Result,Mexico,3.0,Complete,Lose,2,3
+football,world cup,Mexico v England,06/07/2026,no,Full Time Result,England,2.6,Complete,Win,2,3
+football,world cup,Mexico v England,06/07/2026,no,Full Time Result,Draw,3.0,Complete,Lose,2,3
+football,world cup,Mexico v England,06/07/2026,no,To Qualify,Mexico,2.0,Complete,Lose,2,3
+football,world cup,Mexico v England,06/07/2026,no,To Qualify,England,1.8,Complete,Win,2,3
+football,world cup,Mexico v England,06/07/2026,no,Double Chance,Mexico or Draw,1.5,Complete,Lose,2,3
+football,world cup,Mexico v England,06/07/2026,no,Double Chance,Draw or England,1.36,Complete,Win,2,3
+football,world cup,Mexico v England,06/07/2026,no,Double Chance,Mexico or England,1.36,Complete,Win,2,3
+football,world cup,Mexico v England,06/07/2026,no,Goals Over/Under,Over 2.5,2.5,Complete,Win,2,3
+football,world cup,Mexico v England,06/07/2026,no,Goals Over/Under,Under 2.5,1.53,Complete,Lose,2,3
+football,world cup,Mexico v England,06/07/2026,no,BTTS,Yes,2.05,Complete,Win,2,3
+football,world cup,Mexico v England,06/07/2026,no,BTTS,No,1.7,Complete,Lose,2,3
+football,world cup,Portugal v Spain,06/07/2026,yes,Full Time Result,Portugal,4.1,Pending,,,
+football,world cup,Portugal v Spain,06/07/2026,yes,Full Time Result,Spain,1.9,Pending,,,
+football,world cup,Portugal v Spain,06/07/2026,yes,Full Time Result,Draw,3.5,Pending,,,
+football,world cup,Portugal v Spain,06/07/2026,yes,To Qualify,Portugal,2.62,Pending,,,
+football,world cup,Portugal v Spain,06/07/2026,yes,To Qualify,Spain,1.5,Pending,,,
+football,world cup,Portugal v Spain,06/07/2026,yes,Double Chance,Portugal or Draw,1.83,Pending,,,
+football,world cup,Portugal v Spain,06/07/2026,yes,Double Chance,Draw or Spain,1.22,Pending,,,
+football,world cup,Portugal v Spain,06/07/2026,yes,Double Chance,Portugal or Spain,1.28,Pending,,,
+football,world cup,Portugal v Spain,06/07/2026,yes,Goals Over/Under,Over 2.5,1.8,Pending,,,
+football,world cup,Portugal v Spain,06/07/2026,yes,Goals Over/Under,Under 2.5,2.0,Pending,,,
+football,world cup,Portugal v Spain,06/07/2026,yes,BTTS,Yes,1.66,Pending,,,
+football,world cup,Portugal v Spain,06/07/2026,yes,BTTS,No,2.1,Pending,,,
+football,world cup,USA v Belgium,07/07/2026,no,Full Time Result,USA,2.35,Pending,,,
+football,world cup,USA v Belgium,07/07/2026,no,Full Time Result,Belgium,2.87,Pending,,,
+football,world cup,USA v Belgium,07/07/2026,no,Full Time Result,Draw,3.5,Pending,,,
+football,world cup,USA v Belgium,07/07/2026,no,To Qualify,USA,1.72,Pending,,,
+football,world cup,USA v Belgium,07/07/2026,no,To Qualify,Belgium,2.1,Pending,,,
+football,world cup,USA v Belgium,07/07/2026,no,Double Chance,USA or Draw,1.4,Pending,,,
+football,world cup,USA v Belgium,07/07/2026,no,Double Chance,Draw or Belgium,1.57,Pending,,,
+football,world cup,USA v Belgium,07/07/2026,no,Double Chance,USA or Belgium,1.28,Pending,,,
+football,world cup,USA v Belgium,07/07/2026,no,BTTS,Yes,1.53,Pending,,,
+football,world cup,USA v Belgium,07/07/2026,no,BTTS,No,2.37,Pending,,,
+football,world cup,USA v Belgium,07/07/2026,no,Goals Over/Under,Over 2.5,1.66,Pending,,,
+football,world cup,USA v Belgium,07/07/2026,no,Goals Over/Under,Under 2.5,2.2,Pending,,,
+football,world cup,Argentina v Egypt,07/07/2026,yes,Full Time Result,Argentina,1.36,Pending,,,
+football,world cup,Argentina v Egypt,07/07/2026,yes,Full Time Result,Egypt,9.0,Pending,,,
+football,world cup,Argentina v Egypt,07/07/2026,yes,Full Time Result,Draw,4.75,Pending,,,
+football,world cup,Argentina v Egypt,07/07/2026,yes,To Qualify,Argentina,1.14,Pending,,,
+football,world cup,Argentina v Egypt,07/07/2026,yes,To Qualify,Egypt,5.5,Pending,,,
+football,world cup,Argentina v Egypt,07/07/2026,yes,Double Chance,Argentina or Draw,1.071,Pending,,,
+football,world cup,Argentina v Egypt,07/07/2026,yes,Double Chance,Draw or Egypt,3.0,Pending,,,
+football,world cup,Argentina v Egypt,07/07/2026,yes,Double Chance,Argentina or Egypt,1.18,Pending,,,
+football,world cup,Argentina v Egypt,07/07/2026,yes,Goals Over/Under,Over 2.5,2.0,Pending,,,
+football,world cup,Argentina v Egypt,07/07/2026,yes,Goals Over/Under,Under 2.5,1.8,Pending,,,
+football,world cup,Argentina v Egypt,07/07/2026,yes,BTTS,Yes,2.5,Pending,,,
+football,world cup,Argentina v Egypt,07/07/2026,yes,BTTS,No,1.5,Pending,,,

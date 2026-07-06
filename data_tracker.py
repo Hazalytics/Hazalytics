@@ -79,7 +79,7 @@ def settle_event():
                     else:
                         row["selection_result"] = "Lose"        
 
-                if "over/under" in row["market"].lower():
+                if row["market"].lower() == "goals over/under":
                     selection = row["selection"]
                     parts = selection.split()
                     direction = parts[0].lower()
